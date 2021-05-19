@@ -1,0 +1,53 @@
+<div class="bl-panel-items" id="bl-panel-work-items">
+    {%- for portfolio in site.portfolios -%}
+    <!-- Project Starts -->
+    <div data-panel="panel-{{ forloop.index }}">
+        <div class="row">
+            <!-- Project Main Content Starts -->
+            <div class="col s12 l6 xl6 section-padding section-padding-right-none">
+            {%- if portfolio.type == 'youtube' -%}
+                <div class="videocontainer">
+                    <iframe class="youtube-video" src="{{ portfolio.url }}"></iframe>
+                </div>
+            {%- elsif portfolio.type == 'video' -%}
+                <video id="video" class="responsive-video" controls="" poster="{{ portfolio.image | relative_url }}">
+                    <source src="{{ portfolio.url }}" type="video/mp4">
+                </video>
+            {%- else -%}
+                <img class="responsive-img" src="{{ portfolio.image | relative_url }}" alt="project" />
+            {%- endif -%}
+            </div>
+            <!-- Main Project Content Ends -->
+            
+            <!-- Project Details Starts -->
+            <div class="col s12 l6 xl6 section-padding">
+                <h3 class="font-weight-700 uppercase">{{ portfolio.title }}</h3>
+                <ul class="project-details second-font">
+                    <li><i class="fa fa-user"></i><span class="font-weight-700"> Client </span>: <span class="font-weight-400 uppercase">{{ portfolio.title }}</span></li>
+                    <li><i class="fa fa-calendar-o"></i><span class="font-weight-700"> Start Date </span>: <span class="font-weight-400 uppercase">{{ portfolio.start_date }}</span></li>
+                    <li><i class="fa fa-calendar-check-o"></i><span class="font-weight-700"> End Date </span>: <span class="font-weight-400 uppercase">{{ portfolio.end_date }}</span></li>
+                    <li><i class="fa fa-cogs"></i> <span class="font-weight-700"> Used Technologies</span> : <span class="font-weight-400 uppercase">{{ portfolio.technologies }}</span></li>
+                </ul>
+                <hr>
+                <a href="{{ portfolio.preview }}" class="waves-effect waves-light btn font-weight-700">Preview <i class="fa fa-external-link"></i></a>
+            </div>
+            <!-- Project Details Ends -->
+        </div>
+    </div>
+    <!-- Project Ends -->
+    {%- endfor -%}
+
+    <!-- Portfolio Navigation Starts -->
+    <nav>
+        <!-- Previous Work Icon Starts -->
+        <span class="control-button bl-previous-work"><i class="fa fa-angle-left"></i></span>
+        <!-- Previous Work Icon Ends -->
+        <!-- Close Work Icon Starts -->
+        <img alt="close" src="{{ 'images/close-button.png' | relative_url }}" class="control-button bl-icon-close" />
+        <!-- Close Work Icon Ends -->
+        <!-- Next Work Icon Starts -->
+        <span class="control-button bl-next-work"><i class="fa fa-angle-right"></i></span>
+        <!-- Previous Work Icon Ends -->
+    </nav>
+    <!-- Portfolio Navigation Ends -->
+</div>
